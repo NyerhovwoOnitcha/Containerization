@@ -11,9 +11,12 @@ pipeline {
     }
 
     stage ('Checkout SCM') {
-     dir('/tooling') {
-      sh 'pwd'
-    }
+      steps {
+         dir('/tooling') {
+          sh 'pwd'
+         }
+      }
+    
     }
 
 
