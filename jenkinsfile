@@ -10,7 +10,7 @@ pipeline {
       }
     }
 
-    stage ('Checkout SCM') {
+    stage ('Change working dir') {
       steps {
          dir('/tooling') {
           sh 'pwd'
