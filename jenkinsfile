@@ -4,14 +4,17 @@ pipeline {
   stages {
 
     stage ('test') {
-      script {
-        dir ('tooling/'){
-          sh 'pwd'
+      steps{
+        script {
+          dir ('tooling/'){
+            sh 'pwd'
         }
         docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
           sh 'pwd'
        }
       }
+      }
+      
     }
 
     
