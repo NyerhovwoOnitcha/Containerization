@@ -23,8 +23,8 @@ pipeline {
               def toolingImage = docker.build("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}") 
             }
 
-            // Push the docker image to the docker hub repository
-            toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
+            // // Push the docker image to the docker hub repository
+            // toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
             
 
           }
