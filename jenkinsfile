@@ -4,8 +4,8 @@ pipeline {
   stages {
 
     stage ('test') {
-      steps {
-        dir ('tooling') {
+      dir ('tooling'){
+        steps{
           script{
             docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
               sh 'pwd'
@@ -13,6 +13,7 @@ pipeline {
           }
         }
       }
+    }
 
     
     stage('Cleanup after build') {
@@ -22,7 +23,7 @@ pipeline {
     }
   }
 }
-}
+
         // Build the docker image using the Dockerfile in the project root
         // script {
         //   docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
