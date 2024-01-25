@@ -3,16 +3,6 @@ pipeline {
   agent any
   stages {
 
-    // stage ('Change working dir') {
-    //   steps {
-    //      dir('tooling/') {
-    //       sh 'pwd'
-    //      }
-    //   }
-    
-    // }
-
-
     stage ('Build and push') {
       steps {
         dir ('tooling') {
@@ -22,6 +12,7 @@ pipeline {
             }
           }
         }
+      }
         // Build the docker image using the Dockerfile in the project root
         // script {
         //   docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
@@ -36,7 +27,7 @@ pipeline {
       //     } 
       //   }
       // }
-    }
+  
     // stage ('Push') {
     //   steps {
     //     // Push the docker image to the docker hub repository
