@@ -13,26 +13,34 @@ pipeline {
     // }
 
 
-    stage ('Build') {
+    stage ('Build and push') {
       steps {
         // Build the docker image using the Dockerfile in the project root
         script {
-          dir('tooling/'){
-            sh 'pwd'
+          docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
+            dir('tooling/'){
+              sh 'pwd'
             def toolingImage = docker.build("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}") 
+            }
+            // Push the docker image to the docker hub repository
+            toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
+
           }
+          
           
         }
       }
     }
-    stage ('Push') {
-      steps {
-        // Push the docker image to the docker hub repository
-        docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
-        toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
-        }
-      }
-    }
+    // stage ('Push') {
+    //   steps {
+    //     // Push the docker image to the docker hub repository
+    //     script {
+    //         docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
+    //         toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
+    //       }
+    //     }
+    //   }
+    // }
 
     stage('Cleanup after build') {
       steps {
