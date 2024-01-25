@@ -56,10 +56,9 @@ pipeline {
     }
   }
 }
+}
 
-
-
-// Hello, this is Bing. I’m happy to help you with editing your Jenkinsfile code. 😊
+// Hello, this is Bing. I’m happy to help you with editing your Jenkinsfile code. 
 
 // Your code looks good, but you need to make a few changes to use the default docker registry and your credentials id. Here is the edited code:
 
@@ -89,4 +88,7 @@ pipeline {
 //     }
 // }
 
-// You can find more information and examples on how to use the docker methods in your Jenkinsfile here or [here].
+
+
+
+
