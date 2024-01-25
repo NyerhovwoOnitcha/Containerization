@@ -3,22 +3,25 @@ pipeline {
   agent any
   stages {
 
-    stage ('Change working dir') {
-      steps {
-         dir('tooling/') {
-          sh 'pwd'
-         }
-      }
+    // stage ('Change working dir') {
+    //   steps {
+    //      dir('tooling/') {
+    //       sh 'pwd'
+    //      }
+    //   }
     
-    }
+    // }
 
 
     stage ('Build') {
       steps {
         // Build the docker image using the Dockerfile in the project root
         script {
-          sh 'pwd'
-          def toolingImage = docker.build("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}") 
+          dir('tooling/'){
+            sh 'pwd'
+            def toolingImage = docker.build("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}") 
+          }
+          
         }
       }
     }
