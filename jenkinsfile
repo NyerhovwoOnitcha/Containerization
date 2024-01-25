@@ -20,12 +20,12 @@ pipeline {
           docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
             dir('tooling/'){
               sh 'pwd'
-              def toolingImage = docker.build("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}") 
+              def toolingImage = docker.build("warriconnected/${env.BRANCH_NAME}-tooling:${env.BUILD_ID}") 
 
               // Push the docker image to the docker hub repository
-              toolingImage.push()
+              toolingImage.push("warriconnected/${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
             }
-            // "${env.BRANCH_NAME}-tooling:${env.BUILD_ID}"
+            
 
           }
           
