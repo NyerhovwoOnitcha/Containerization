@@ -90,5 +90,3 @@ pipeline {
 // }
 
 // You can find more information and examples on how to use the docker methods in your Jenkinsfile here or [here].
-
-// I hope this helps you write your Jenkinsfile and push your docker images successfully. 😊

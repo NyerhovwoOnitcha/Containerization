@@ -129,6 +129,8 @@ tooling:1.0.0
 Push to the registry
 
 ### Create a new branch called todo, connect your repo to jenkins, create a multibranch pipepline that ultimately simulates a Docker build and push to your Docker repo
+😊
+
 
 
 
