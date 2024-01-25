@@ -2,13 +2,6 @@
 pipeline {
   agent any
   stages {
-    stage ('Checkout SCM') {
-      steps {
-        // Clone the source code from GitHub
-        // Replace the URL with your own
-        git 'https://github.com/NyerhovwoOnitcha/Containerization.git'
-      }
-    }
 
     stage ('Change working dir') {
       steps {
