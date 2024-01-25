@@ -17,17 +17,19 @@ pipeline {
       steps {
         // Build the docker image using the Dockerfile in the project root
         script {
-          // docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
+          docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
             dir('tooling/'){
               sh 'pwd'
               def toolingImage = docker.build("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}") 
+
+              toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
             }
 
             // // Push the docker image to the docker hub repository
             // toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
             
 
-          // }
+          }
           
           
         }
