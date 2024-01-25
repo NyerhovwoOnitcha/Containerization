@@ -17,6 +17,7 @@ pipeline {
       steps {
         // Build the docker image using the Dockerfile in the project root
         script {
+          sh 'pwd'
           def toolingImage = docker.build("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}") 
         }
       }
