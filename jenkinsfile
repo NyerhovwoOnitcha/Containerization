@@ -11,7 +11,7 @@ pipeline {
           docker.withRegistry('https://index.docker.io/', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
             sh 'pwd'
             def toolingImage = docker.build("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
-            toolingImage.push("warriconnected/${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
+            toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
           }
           }
         }
