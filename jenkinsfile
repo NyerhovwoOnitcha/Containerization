@@ -9,10 +9,10 @@ pipeline {
         script {
           dir ('tooling/'){
             sh 'pwd'
-          docker.withRegistry('https://index.docker.io/', 'e067ebcc-6a78-4aa5-941a-528c46da2563') {
+          docker.withRegistry('https://hub.docker.com/', 'e067ebcc-6a78-4aa5-941a-528c46da2563') {
             sh 'pwd'
             def toolingImage = docker.build("warriconnected/main-tooling:${env.BRANCH_NAME}-${env.BUILD_ID}")
-            toolingImage.push("${env.BRANCH_NAME}-${env.BUILD_ID}")
+            toolingImage.push()
           }
 
           }
@@ -22,7 +22,8 @@ pipeline {
       
     }
 // 5c8d62c3-46cf-4989-97c0-0d1392a28899
-    // e067ebcc-6a78-4aa5-941a-528c46da2563
+// https://index.docker.io/
+   
     stage('Cleanup after build') {
       steps {
         cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
