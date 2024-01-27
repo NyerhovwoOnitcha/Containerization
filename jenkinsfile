@@ -32,63 +32,7 @@ pipeline {
   }
 }
 
-        // Build the docker image using the Dockerfile in the project root
-        // script {
-        //   docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
-        //     dir('tooling/'){
-        //       sh 'pwd'
-        //       def toolingImage = docker.build("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}") 
 
-        //       toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
-        //     }
-            // // Push the docker image to the docker hub repository
-            // toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
-      //     } 
-      //   }
-      // }
-  
-    // stage ('Push') {
-    //   steps {
-    //     // Push the docker image to the docker hub repository
-    //     docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
-    //     toolingImage.push("${env.BRANCH_NAME}-tooling:${env.BUILD_ID}")
-    //     // script {
-            
-    //     //   }
-    //     }
-    //   }
-    // }
-
-
-// Hello, this is Bing. I’m happy to help you with editing your Jenkinsfile code. 
-
-// Your code looks good, but you need to make a few changes to use the default docker registry and your credentials id. Here is the edited code:
-
-// pipeline {
-//     agent any
-
-//     stages {
-//         stage('Build') {
-//             steps {
-//                 script {
-//                     docker.build("my-image:${env.BRANCH_NAME}")
-//                 }
-//             }
-//         }
-
-//         stage('Push') {
-//             steps {
-//                 script {
-//                     // Use the default docker registry URL
-//                     docker.withRegistry('https://index.docker.io/v1/', '54782732y38823782304') {
-//                         // Use the username and repository name for the image
-//                         docker.push("username/my-repo:${env.BRANCH_NAME}")
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
 
 
 
