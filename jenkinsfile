@@ -12,7 +12,7 @@ pipeline {
           docker.withRegistry('', '5c8d62c3-46cf-4989-97c0-0d1392a28899') {
             sh 'pwd'
             def toolingImage = docker.build("warriconnected/tooling:${env.BRANCH_NAME}-v1.0.0")
-            toolingImage.push("warriconnected/tooling:${env.BRANCH_NAME}-v1.0.0")
+            toolingImage.push("${env.BRANCH_NAME}-v1.0.0")
           }
 
           }
