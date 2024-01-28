@@ -23,11 +23,11 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_IP=mysqlserverhost
-      MYSQL_USER=pauly
-      MYSQL_PASS=pauly1234
-      MYSQL_DBNAME=toolingdb 
-      # MYSQL_RANDOM_ROOT_PASSWORD: 'clound1234'
+      MYSQL_IP:mysqlserverhost
+      MYSQL_USER:pauly
+      MYSQL_PASS:pauly1234
+      MYSQL_DBNAME:toolingdb 
+      MYSQL_RANDOM_ROOT_PASSWORD: 'clound1234'
     volumes:
       - db:/var/lib/mysql
 volumes:
