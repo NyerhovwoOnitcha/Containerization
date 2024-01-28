@@ -1,0 +1,36 @@
+version: "3.9"
+
+networks:
+  tooling_nk:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.1.0/24
+      
+
+services:
+  tooling_frontend:
+    build: 
+      context: tooling/
+      dockerfile: Dockerfile
+    ports:
+      - "8002:80"
+    volumes:
+      - tooling_frontend:/var/www/html
+    networks:
+      - tooling_nk
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_IP=mysqlserverhost
+      MYSQL_USER=pauly
+      MYSQL_PASS=pauly1234
+      MYSQL_DBNAME=toolingdb 
+      # MYSQL_RANDOM_ROOT_PASSWORD: 'clound1234'
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  tooling_frontend:
+  db:
+```
