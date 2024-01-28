@@ -131,6 +131,14 @@ Push to the registry
 ### Create a new branch called todo, connect your repo to jenkins, create a multibranch pipepline that ultimately simulates a Docker build and push to your Docker repo
 😊
 
+### DOCKER COMPOSE
+Imagine you are managing 10 docker containers for different applications and you are runing different commands for each, this will make things all over the place.  
+
+With docker compose we can take all the commands and map them into a file so that we have structured commands. 
+You write all the commands for each container in a structured way inside a  docker compose file, that way not only are you in total control of everything that is being done but you also have a point of refence to check the history of every command that has been run for all containers making managing your containers easier.
+
+Basically docker compose is just a structured way to run the docker commands you already know.
+
 
 
 
