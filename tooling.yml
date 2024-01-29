@@ -1,3 +1,39 @@
+version: "3.9"
+services:
+  tooling_frontend:
+    build: 
+      context: tooling/
+     dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    volumes:
+      - tooling_frontend:/var/www/html
+    links:
+      - db
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+
+      MYSQL_HOST: mysqlserverhost
+      MYSQL_USER: pauly
+      MYSQL_PASSWORD: pauly1234
+      MYSQL_DBNAME: toolingdb 
+      MYSQL_ROOT_PASSWORD: clound1234
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  tooling_frontend:
+  db:
+
+
+
+
+
+
+
+
+
 # version: "3.9"
 # networks:
 #   tooling_nk:
@@ -55,31 +91,4 @@
 #     db:
 
 
-version: "3.9"
-services:
-  tooling_frontend:
-    build: 
-      context: tooling/
-     dockerfile: Dockerfile
-    ports:
-      - "5000:80"
-    volumes:
-      - tooling_frontend:/var/www/html
-    links:
-      - db
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-
-      MYSQL_HOST: mysqlserverhost
-      MYSQL_USER: pauly
-      MYSQL_PASSWORD: pauly1234
-      MYSQL_DBNAME: toolingdb 
-      MYSQL_ROOT_PASSWORD: clound1234
-    volumes:
-      - db:/var/lib/mysql
-volumes:
-  tooling_frontend:
-  db:
 
