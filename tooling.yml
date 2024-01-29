@@ -3,18 +3,17 @@ services:
   tooling_frontend:
     build: 
       context: tooling/
-     dockerfile: Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "5000:80"
     volumes:
       - tooling_frontend:/var/www/html
-    links:
+    depends_on:
       - db
   db:
     image: mysql:5.7
     restart: always
     environment:
-
       MYSQL_HOST: mysqlserverhost
       MYSQL_USER: pauly
       MYSQL_PASSWORD: pauly1234
