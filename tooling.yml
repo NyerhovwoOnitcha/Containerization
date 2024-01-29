@@ -1,5 +1,4 @@
 version: "3.9"
-
 networks:
   tooling_nk:
     ipam:
@@ -7,7 +6,6 @@ networks:
       config:
         - subnet: 10.0.1.0/24
       
-
 services: 
   db:
     image: mysql:5.7
@@ -38,7 +36,7 @@ services:
     volumes:
       - ./create_user.sql:/tmp/create_user.sql
 
-    command: bash -c "sleep 10 && mysql -h mysql-server -uroot -p${MYSQL_ROOT_PASSWORD} < /tmp/create_user.sql"
+    command: bash -c "sleep 10 && mysql -h db -uroot -p${MYSQL_ROOT_PASSWORD} < /tmp/create_user.sql"
 
   
   tooling_frontend:
