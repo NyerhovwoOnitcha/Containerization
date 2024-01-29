@@ -47,6 +47,6 @@ services:
       - tooling_nk
 
   volumes:
-  tooling_frontend:
-  db:
+    tooling_frontend:
+    db:
 
