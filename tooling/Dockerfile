@@ -1,9 +1,9 @@
 FROM php:7-apache
 MAINTAINER Dare dare@darey.io
 
-ENV MYSQL_IP=mysqlhostserver
+ENV MYSQL_HOST=mysqlhostserver
 ENV MYSQL_USER=pauly
-ENV MYSQL_PASS=pauly1234
+ENV MYSQL_PASSWORD=pauly1234
 ENV MYSQL_DBNAME=toolingdb
 
 RUN docker-php-ext-install mysqli

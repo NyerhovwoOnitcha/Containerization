@@ -9,16 +9,7 @@ networks:
       
 
 services:
-  tooling_frontend:
-    build: 
-      context: tooling/
-      dockerfile: Dockerfile
-    ports:
-      - "8002:80"
-    volumes:
-      - tooling_frontend:/var/www/html
-    networks:
-      - tooling_nk
+  
   db:
     image: mysql:5.7
     restart: always
@@ -30,6 +21,32 @@ services:
       MYSQL_ROOT_PASSWORD: clound1234
     volumes:
       - db:/var/lib/mysql
-volumes:
+    networks:
+      - tooling_nk
+
+  mysql-init:
+    image: mysql:5.7
+    networks:
+      - tooling_nk
+    depends_on:
+      - db
+    volumes:
+      - ./create_user.sql:/tmp/create_user.sql
+    command: bash -c "sleep 10 && mysql -h mysql-server -uroot -p${MYSQL_ROOT_PASSWORD} < /tmp/create_user.sql"
+
+  
+  tooling_frontend:
+    build: 
+      context: tooling/
+      dockerfile: Dockerfile
+    ports:
+      - "8002:80"
+    volumes:
+      - tooling_frontend:/var/www/html
+    networks:
+      - tooling_nk
+
+  volumes:
   tooling_frontend:
   db:
+
