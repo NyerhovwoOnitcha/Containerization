@@ -1,16 +1,6 @@
 version: "3.9"
 services:
-  tooling_frontend:
-    build: 
-      context: tooling/
-      dockerfile: Dockerfile
-    ports:
-      - "5000:80"
-    volumes:
-      - tooling_frontend:/var/www/html
-    depends_on:
-      - db
-  db:
+    db:
     image: mysql:5.7
     restart: always
     environment:
@@ -21,6 +11,18 @@ services:
       MYSQL_ROOT_PASSWORD: clound1234
     volumes:
       - db:/var/lib/mysql
+      
+  tooling_frontend:
+    build: 
+      context: tooling/
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    volumes:
+      - tooling_frontend:/var/www/html
+    depends_on:
+      - db
+
 volumes:
   tooling_frontend:
   db:
