@@ -8,8 +8,7 @@ networks:
         - subnet: 10.0.1.0/24
       
 
-services:
-  
+services: 
   db:
     image: mysql:5.7
     restart: always
@@ -24,14 +23,21 @@ services:
     networks:
       - tooling_nk
 
+
   mysql-init:
     image: mysql:5.7
     networks:
       - tooling_nk
+
+    environment:
+      MYSQL_ROOT_PASSWORD: clound1234
+
     depends_on:
       - db
+
     volumes:
       - ./create_user.sql:/tmp/create_user.sql
+
     command: bash -c "sleep 10 && mysql -h mysql-server -uroot -p${MYSQL_ROOT_PASSWORD} < /tmp/create_user.sql"
 
   
