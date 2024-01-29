@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-    db:
+  db:
     image: mysql:5.7
     restart: always
     environment:
@@ -11,7 +11,6 @@ services:
       MYSQL_ROOT_PASSWORD: clound1234
     volumes:
       - db:/var/lib/mysql
-      
   tooling_frontend:
     build: 
       context: tooling/
@@ -22,7 +21,7 @@ services:
       - tooling_frontend:/var/www/html
     depends_on:
       - db
-
+  
 volumes:
   tooling_frontend:
   db:
