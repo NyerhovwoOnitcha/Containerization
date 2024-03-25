@@ -42,11 +42,11 @@ Flags used
 
 
 
-#### Connecting to the running MySQL container.
+### Connecting to the running MySQL container.
 
 We can either connect directly to the container running the MySQL server or use a second container as a MySQL client.
 
-## **Approach 1**:
+#### **Approach 1**:
 
 we connect directly to the server running the container: We can do this in 2 ways:
 
@@ -55,13 +55,12 @@ we connect directly to the server running the container: We can do this in 2 way
 `docker exec -it <container_name/id> bash`
   - `docker exec -it mysql-server bash`
  
-### OR
+**OR**
 
 `docker exec -it <container_name/id> <COMMAND>`
   - `docker exec -it mysql mysql -uroot -p`
 
-This first way opens a bash terminal and takes us inside the container while, the second way runs whatever command we intend to run in the container from our terminal.
-
+This first way takes us inside the container and opens a bash terminal while the second way runs whatever command we intend to run in the container from our terminal. In this case it prompts us to provide the root password, on doing that we will have sucessfully connected the MySQL client to the server 
 Flags used
 
 - exec used to execute a command from bash itself
@@ -75,19 +74,21 @@ Flags used
 Delete the container and the image and let's see approach 2
 `docker stop <container_id> && docker remove <container_id> && docker rmi <image id>`
 
-## **Approach 2**:
+#### **Approach 2**:
+Using this approach we will connect to the MySQL server from a MySQL client running in a different container
 
-We have already created a network, create an env variable to store the root password.
+- We will first create a network, since we have already done this there is no need to repeat the network creation step
+- create an env variable to store the root password.
 
 #### Create an environment variable to run the root password of the msql
 ```
 $export MYSQL_PW= *****
 
-$echo $ export MYSQL_PW
+$echo $MYSQL_PW
 ```
 ![export password](./images/export_pw.png)
 
-#### Pull and run thw mysql server image
+#### Pull and run the mysql server image
 
 ```
 docker run --network tooling_network -h mysqlhostserver --name=mysql-server -e MYSQL_ROOT_PASSWORD=${MYSQL_PW} -d mysql/mysql-server:latest
@@ -107,15 +108,19 @@ It is not encouraged to connect to the MySQL server remotely using the root user
 ```
 docker exec -i mysql-server mysql -uroot -p${MYSQL_PW} < create_user.sql
 ```
+Check if the user was created:
+
+Database before applying script
 ![mysql DB before applying script](./images/before%20applying%20script.png)
 
+Database after applying script
 ![mysql db after applying script](./images/after%20applying%20script.png)
 
 If you see a warning like below, it is acceptable to ignore:
 ![warning](./images/warning.png)
 
 
-#### Connect to the MySQL server from a secondcontainer running the MySQL client utility
+#### Connect to the MySQL server from a second container running the MySQL client utility
 
 We will connect to the MySQL server from a second container running the MySQL client. Using this approach we don't have to install any client tool on our local laptop and there's no need to connect directly to the container running the MySQL server
 
@@ -176,7 +181,7 @@ WHERE:
 
 ```
 
-### Run the Tooling app.
+### Containerize the Tooling app.
 - Create the dockerfile, run the build command, and launch the container.
 
 - Build the tooling image
