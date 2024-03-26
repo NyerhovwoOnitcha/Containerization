@@ -209,6 +209,13 @@ Connection failed: php_network_getaddresses: getaddrinfo failed: Temporary failu
 ```
 ![](./images/mysql-container%20down.png)
 
+## Now Containerize the TODO application.
+- Create a new branch of the containerization repo
+- Run both database and app on your laptop Docker Engine
+- Access the application from the browser
+
+
+
 
 #### Now write a Jenkinsfile that will simulate a Docker Build and a Docker
 Push to the registry
