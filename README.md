@@ -10,7 +10,7 @@ Later on we will add a CI tool i.e jenkins to achieve a multi-branch pipeline
 
 
 ### Deploy MySql in a container.
- We start be assembling the database layer of the tooling application. Pull a MySql container, configure it, and make sure it
+ We start be assembling the database layer of the tooling application. Pull a MySql container, configure it and make sure it
 is ready to receive requests from our PHP application.
 
 #### First create a network 
