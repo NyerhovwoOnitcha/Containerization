@@ -217,6 +217,8 @@ Connection failed: php_network_getaddresses: getaddrinfo failed: Temporary failu
 
 
 
+**FOR THE NEXT TASK**
+
 #### Now write a Jenkinsfile that will simulate a Docker Build and a Docker
 Push to the registry
 
@@ -230,6 +232,7 @@ With docker compose we can take all the commands and map them into a file so tha
 You write all the commands for each container in a structured way inside a  docker compose file, that way not only are you in total control of everything that is being done but you also have a point of refence to check the history of every command that has been run for all containers making managing your containers easier.
 
 Basically docker compose is just a structured way to run the docker commands you already know.
+We will run use docker compose for both the PHP and TODO application 
 
 
 
