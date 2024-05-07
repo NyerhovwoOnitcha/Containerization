@@ -8,7 +8,7 @@ pipeline {
         script {
           dir ('tooling/'){
             sh 'pwd'
-          docker.withRegistry('', 'DockerHub-credential') {
+          docker.withRegistry('', 'Dockerhub-credential') {
             sh 'pwd'
             // def toolingImage = docker.build("warriconnected/containerization:${env.BRANCH_NAME}-v1.0.0")
             def toolingImage = docker.build("warriconnected/multibranch:tooling-v1.0.0")

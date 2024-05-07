@@ -444,14 +444,82 @@ The tooling app source code is already in the main branch and the todo branch co
 - Push the image to the multibranch repo on dockerhub provisioned with terraform
 - Ensure that the tagged images from your Jenkinsfile have a prefix that suggests which branch the image was pushed from
 
-jenkinsfile for tooling app:
+**Write the jenkinsfile**:
+
+**jenkinsfile for tooling app**:
 ```
+pipeline {
+  agent any
+  stages {
+
+    stage ('build and push') {
+      steps{
+
+        script {
+          dir ('tooling/'){
+            sh 'pwd'
+          docker.withRegistry('', 'Dockerhub-credential') {
+            sh 'pwd'
+            // def toolingImage = docker.build("warriconnected/containerization:${env.BRANCH_NAME}-v1.0.0")
+            def toolingImage = docker.build("warriconnected/multibranch:tooling-v1.0.0")
+            toolingImage.push("${env.BRANCH_NAME}-tooling-v1.0.0")
+          }
+
+          }
+        }
+        
+      }
+      
+    }
+
+// https://index.docker.io/
+   
+    stage('Cleanup after build') {
+      steps {
+        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
+      }
+    }
+  }
+}
 ``` 
-**Checkout the repository on your server**
-This maybe on your local server or a server on the cloud, provided you can push from the server to your github repo.
 
+**jenkinsfile for todo app**:
+```
+pipeline {
+  agent any
+  stages {
 
-**FOR THE NEXT TASK**
+    stage ('build and push') {
+      steps{
+
+        script {
+          dir ('php-todo/'){
+            sh 'pwd'
+          docker.withRegistry('', 'Dockerhub-credential') {
+            sh 'pwd'
+            // def toolingImage = docker.build("warriconnected/containerization:${env.BRANCH_NAME}-v1.0.0")
+            def toolingImage = docker.build("warriconnected/multibranch:todo-v1.0.0")
+            toolingImage.push("${env.BRANCH_NAME}-v1.0.0")
+          }
+
+          }
+        }
+        
+      }
+      
+    }
+
+// https://index.docker.io/
+   
+    stage('Cleanup after build') {
+      steps {
+        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
+      }
+    }
+  }
+}
+```
+**Trigger the pipeline**
 
 #### Now write a Jenkinsfile that will simulate a Docker Build and a Docker
 Push to the registry
