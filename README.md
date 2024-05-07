@@ -438,12 +438,15 @@ Ensure the following plugins are installed: Blue ocean CloudBees docker custom b
 - When configuring your global github credenital, choose username and passowrd where the username is your github username and the password is the access token.
 
 Next we configure the repositories and write the jenkinsfile.
-The tooling app source code is already in the main branch of the Containerazation repository. To achieve a multibranch pipeline:
-- Checkout the repository on your server
-- create a new branch called todo 
-- clone the todo repository from github 
-- Write a jenkinsfile that builds and pushes tthe images to dockerhub.
 
+The tooling app source code is already in the main branch and the todo branch contains the todo app source code. Write a jenkinsfile in each branch that uses the dockerfile to:
+- build the image and tag the image
+- Push the image to the multibranch repo on dockerhub provisioned with terraform
+- Ensure that the tagged images from your Jenkinsfile have a prefix that suggests which branch the image was pushed from
+
+jenkinsfile for tooling app:
+```
+``` 
 **Checkout the repository on your server**
 This maybe on your local server or a server on the cloud, provided you can push from the server to your github repo.
 
