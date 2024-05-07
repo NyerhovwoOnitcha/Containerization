@@ -1,0 +1,3 @@
+variable "keypair" {
+    type = string
+}
