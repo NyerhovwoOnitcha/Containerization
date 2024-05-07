@@ -8,7 +8,7 @@ pipeline {
         script {
           dir ('php-todo/'){
             sh 'pwd'
-          docker.withRegistry('', 'DockerHub-credential') {
+          docker.withRegistry('', 'Dockerhub-credential') {
             sh 'pwd'
             // def toolingImage = docker.build("warriconnected/containerization:${env.BRANCH_NAME}-v1.0.0")
             def toolingImage = docker.build("warriconnected/multibranch:todo-v1.0.0")
