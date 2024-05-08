@@ -520,12 +520,10 @@ pipeline {
 }
 ```
 **Trigger the pipeline**
-
-#### Now write a Jenkinsfile that will simulate a Docker Build and a Docker
-Push to the registry
-
-### Create a new branch called todo, connect your repo to jenkins, create a multibranch pipepline that ultimately simulates a Docker build and push to your Docker repo
-😊
+Scan the repository and trigger the pipeline
+![pipeline trigered1](./images/pipeline%20triggered1.png)
+![pipeline trigered2](./images/pipeline%20triggered2.png)
+![pipeline trigered3](./images/pipeline%20triggered3.png)
 
 ### DOCKER COMPOSE
 Imagine you are managing 10 docker containers for different applications and you are runing different commands for each, this will make things all over the place.  
